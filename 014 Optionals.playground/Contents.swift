@@ -72,6 +72,55 @@ let captians = [
     "Defiant": "Sisko"
 ]
 
-let new = captians[]
+let new = captians["Serenity"] ?? "N/A"
 
+let tvShows = ["Akuma-kun", "Pluto", "Monster", "NGE"]
+let fav = tvShows.randomElement() ?? "None"
 
+struct Book {
+    let title: String
+    let author: String?
+}
+
+let book = Book(title: "Edda", author: nil)
+let author = book.author ?? "Anonymous"
+print(author)
+
+let input = ""
+let num = Int(input) ?? 0
+print(num)
+
+// MARK: Optional chaining
+
+var buch: Book? = nil
+buch = Book(title: "lolita", author: "nabokov")
+let auth = buch?.author?.first?.uppercased() ?? "A"
+
+// MARK: try?
+
+enum UserError: Error {
+    case badID, networkFailed
+}
+
+func getUser(id: Int) throws -> String {
+    throw UserError.badID
+}
+
+if let user = try? getUser(id: 34) {
+    print(user)
+}
+
+let user = (try? getUser(id: 32)) ?? "Anon"
+print(user)
+
+// MARK: Checkpoint 9
+
+func rand(from array: [Int]?) -> Int { array?.randomElement() ?? Int.random(in: 1...100) }
+
+var testArray = [Int]()
+for i in 101...200 {
+    testArray.append(i)
+}
+
+rand(from: testArray)
+rand(from: nil)
