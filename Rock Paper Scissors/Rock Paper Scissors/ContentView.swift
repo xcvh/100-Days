@@ -51,7 +51,7 @@ struct ContentView: View {
     func playRound() {
         currentMoveComputer = move[Int.random(in: 0...2)]
         playerShouldWin = Bool.random()
-        score += 1
+        round += 1
     }
     
     func testMove(computer: String, player: String, shouldWin: Bool) -> Bool {
@@ -60,11 +60,25 @@ struct ContentView: View {
             switch move {
             case ("🪨", "📜"):
                 return true
+            case ("📜", "✂️"):
+                return true
+            case ("✂️", "🪨"):
+                return true
+            default:
+                return false
             }
+        } else {
+            switch move {
+            case ("🪨", "📜"):
+                return false
+            case ("📜", "✂️"):
+                return false
+            case ("✂️", "🪨"):
+                return false
+            default:
+                return false
+        }
         }
     }
 }
 
-#Preview {
-    ContentView()
-}
